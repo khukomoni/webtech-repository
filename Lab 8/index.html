@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lab 8</title>
+
+    <script>
+        function validateform() {
+            //var p_name = document.forms["Product"]["product_name"].value;
+            //var b_price = document.forms["Product"]["buying_price"].value;
+            //var s_price = document.forms["Product"]["selling_price"].value;
+            var p_name = document.Product.product_name.value;
+            var b_price = document.Product.buying_price.value;
+            var s_price = document.Product.selling_price.value;
+
+            if (p_name == null || p_name == "" || b_price == null || b_price == "" || b_price.match(/^[0-9]+$/g) || s_price == null || s_price == "" || s_price.match(/^[0-9]+$/g)) {
+                if (p_name == null || p_name == "") {
+                    document.getElementById("product_name_Error").innerHTML = "Product Name can not be blank";
+                    document.getElementById("product_name").style.borderColor = "red";
+                    return false;
+                }
+                else if (b_price == null || b_price == "") {
+                    document.getElementById("buying_price_Error").innerHTML = "Buying Price can not be blank";
+                    document.getElementById("buying_price").style.borderColor = "red";
+                    return false;
+                } else if (b_price.match(/^[0-9]+$/g)) {
+                    document.getElementById("buying_price_Error").innerHTML = "Buying Price must be a number";
+                    document.getElementById("buying_price").style.borderColor = "red";
+                    return false;
+                }
+                else if (s_price == null || s_price == "") {
+                    document.getElementById("selling_price_Error").innerHTML = "Selling Price can not be blank";
+                    document.getElementById("selling_price").style.borderColor = "red";
+                    return false;
+                } else if (s_price.match(/^[0-9]+$/g)) {
+                    document.getElementById("selling_price_Error").innerHTML = "Selling Price must be a number";
+                    document.getElementById("selling_price").style.borderColor = "red";
+                    return false;
+                }
+                else
+                    return false;
+            }
+            else {
+                document.getElementById("product_name_Error").innerHTML = "";
+                document.getElementById("product_name").style.borderColor = "green";
+
+                document.getElementById("buying_price_Error").innerHTML = "";
+                document.getElementById("buying_price").style.borderColor = "green";
+
+                document.getElementById("selling_price_Error").innerHTML = "";
+                document.getElementById("selling_price").style.borderColor = "green";
+
+                return true;
+            }
+
+        }
+
+        function validate_product_name() {
+            var p_name = document.Product.product_name.value;
+
+            if (p_name == null || p_name == "") {
+                document.getElementById("product_name_Error").innerHTML = "Product Name can not be blank";
+                document.getElementById("product_name").style.borderColor = "red";
+            } else {
+                document.getElementById("product_name_Error").innerHTML = "";
+                document.getElementById("product_name").style.borderColor = "green";
+            }
+        }
+
+        function validate_buying_price() {
+            var b_price = document.Product.buying_price.value;
+
+            if (b_price == null || b_price == "") {
+                document.getElementById("buying_price_Error").innerHTML = "Buying Price can not be blank";
+                document.getElementById("buying_price").style.borderColor = "red";
+            } else if (b_price.match(/^[0-9]+$/g)) {
+                document.getElementById("buying_price_Error").innerHTML = "Buying Price must be a number";
+                document.getElementById("buying_price").style.borderColor = "red";
+            } else {
+                document.getElementById("buying_price_Error").innerHTML = "";
+                document.getElementById("buying_price").style.borderColor = "green";
+            }
+        }
+
+        function validate_selling_price() {
+            var s_price = document.Product.selling_price.value;
+
+            if (s_price == null || s_price == "") {
+                document.getElementById("selling_price_Error").innerHTML = "Selling Price can not be blank";
+                document.getElementById("selling_price").style.borderColor = "red";
+            } else if (s_price.match(/^[0-9]+$/g)) {
+                document.getElementById("selling_price_Error").innerHTML = "Selling Price must be a number";
+                document.getElementById("selling_price").style.borderColor = "red";
+            } else {
+                document.getElementById("selling_price_Error").innerHTML = "";
+                document.getElementById("selling_price").style.borderColor = "green";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form name="Product" action="" onsubmit="return validateform()" method="post">
+        <fieldset>
+            <legend>Lab 8</legend>
+
+            <label for="product_name">Product Name : </label>
+            <input type="text" name="product_name" id="product_name" onblur="validate_product_name()">
+            <p id="product_name_Error"></p><br><br>
+
+            <label for="buying_Price">Buying Price : </label>
+            <input type="text" name="buying_Price" id="buying_Price" onblur="validate_buying_price()">
+            <p id="buying_price_Error"></p><br><br>
+
+            <label for="selling_price">Selling Price : </label>
+            <input type="text" name="selling_price" id="selling_price" onblur="validate_selling_price()">
+            <p id="selling_price_Error"></p><br><br>
+
+            <input type="submit" value="Submit">
+        </fieldset>
+    </form>
+</body>
+
+</html>
